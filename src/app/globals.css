@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+:root {
+  --background: #eef7ff;
+  --foreground: #102d61;
+  --blue: #1675e8;
+  --deep-blue: #12336d;
+  --line: #c8dcf4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.registration-page {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  padding: 50px 24px 72px;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.95) 0 10%, transparent 30%),
+    linear-gradient(135deg, #eef8ff 0%, #f9fcff 48%, #e6f3ff 100%);
+}
+
+.registration-page::before,
+.registration-page::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.registration-page::before {
+  width: 250px;
+  height: 250px;
+  right: -72px;
+  top: 140px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, rgba(35, 120, 221, 0.08) 0 1px, transparent 1px 11px);
+  opacity: 0.7;
+}
+
+.registration-page::after {
+  width: 230px;
+  height: 230px;
+  left: -75px;
+  bottom: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(69, 154, 241, 0.17), transparent 68%);
+}
+
+.corner-accent {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: var(--blue);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.corner-accent-top {
+  top: -100px;
+  left: -100px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 22px rgba(36, 126, 232, 0.17), 0 0 0 44px rgba(36, 126, 232, 0.08);
+}
+
+.corner-accent-bottom {
+  right: -100px;
+  bottom: -100px;
+  transform: rotate(45deg);
+  background: #1065c9;
+  box-shadow: 0 0 0 22px rgba(36, 126, 232, 0.16), 0 0 0 44px rgba(36, 126, 232, 0.07);
+}
+
+.registration-shell {
+  width: min(100%, 680px);
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  animation: rise-in 650ms ease both;
+}
+
+.brand-mark {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #0f2f66, #153e83);
+  box-shadow: 0 8px 16px rgba(19, 64, 130, 0.2);
+  color: white;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+.brand-mark span {
+  transform: translateY(-2px) rotate(-2deg);
+}
+
+.brand-name {
+  color: var(--deep-blue);
+  font-size: clamp(29px, 6vw, 45px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.brand-header h1 {
+  margin: 12px 0 7px;
+  color: var(--deep-blue);
+  font-size: clamp(29px, 5vw, 43px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.brand-header h1 span {
+  color: var(--blue);
+}
+
+.brand-motto {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 34px;
+  color: #58667d;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+.brand-motto b {
+  color: #8e9bb0;
+  font-weight: 400;
+}
+
+.registration-card {
+  padding: 34px 36px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.87);
+  box-shadow: 0 20px 45px rgba(37, 91, 150, 0.14), 0 4px 12px rgba(64, 128, 194, 0.07);
+  backdrop-filter: blur(10px);
+  animation: rise-in 700ms 100ms ease both;
+}
+
+.field-group {
+  margin-bottom: 26px;
+}
+
+.field-group label {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin: 0 0 10px;
+  color: var(--deep-blue);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.field-group label svg {
+  width: 29px;
+  height: 29px;
+  stroke-width: 2.4;
+  color: var(--blue);
+}
+
+.field-group input,
+.field-group select {
+  width: 100%;
+  height: 54px;
+  padding: 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--deep-blue);
+  font: inherit;
+  font-size: 17px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.field-group input::placeholder {
+  color: #8797b1;
+}
+
+.field-group select {
+  appearance: none;
+  color: #8797b1;
+  background-image: linear-gradient(45deg, transparent 50%, var(--deep-blue) 50%), linear-gradient(135deg, var(--deep-blue) 50%, transparent 50%);
+  background-position: calc(100% - 24px) 24px, calc(100% - 18px) 24px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(22, 117, 232, 0.14);
+}
+
+.education-group input {
+  margin-top: 17px;
+}
+
+.register-button {
+  display: flex;
+  width: 100%;
+  height: 61px;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 31px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(100deg, #2383ed, #1469db);
+  box-shadow: 0 8px 15px rgba(22, 117, 232, 0.22);
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-size: 23px;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.register-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 20px rgba(22, 117, 232, 0.3);
+}
+
+.register-button:active {
+  transform: translateY(0);
+}
+
+.register-button svg {
+  width: 27px;
+  height: 27px;
+}
+
+.form-status {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #148049;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 180ms ease, height 180ms ease, margin 180ms ease;
+}
+
+.form-status.is-visible {
+  height: 20px;
+  margin-top: 14px;
+  opacity: 1;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .registration-page {
+    padding: 30px 14px 48px;
+  }
+
+  .brand-mark {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    font-size: 39px;
+  }
+
+  .brand-name {
+    font-size: 28px;
+  }
+
+  .brand-header h1 {
+    max-width: 360px;
+    margin-top: 10px;
+    font-size: 30px;
+  }
+
+  .brand-motto {
+    margin-bottom: 25px;
+    font-size: 18px;
+  }
+
+  .registration-card {
+    padding: 25px 19px 23px;
+    border-radius: 15px;
+  }
+
+  .field-group {
+    margin-bottom: 21px;
+  }
+
+  .field-group label {
+    gap: 12px;
+    font-size: 17px;
+  }
+
+  .field-group label svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .field-group input,
+  .field-group select {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 15px;
+  }
+
+  .register-button {
+    height: 55px;
+    margin-top: 23px;
+    font-size: 20px;
+  }
+}
