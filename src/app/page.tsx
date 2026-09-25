@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   ArrowRight,
+  BadgeCheck,
   CheckCircle2,
   GraduationCap,
   Mail,
@@ -10,12 +11,16 @@ import {
   UserRound,
 } from "lucide-react";
 
+const PASSING_YEARS = Array.from({ length: 9 }, (_, i) => 2020 + i);
+
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     event.currentTarget.reset();
+    setStatus("");
     setSubmitted(true);
   }
 
@@ -80,6 +85,30 @@ export default function Home() {
               <option value="other">Other</option>
             </select>
             <input id="grade" name="grade" type="text" placeholder="Enter your grade" required />
+          </div>
+
+          <div className="field-group education-group">
+            <label htmlFor="status">
+              <BadgeCheck aria-hidden="true" />
+              <span>Current Status:</span>
+            </label>
+            <select
+              id="status"
+              name="status"
+              value={status}
+              onChange={(event) => setStatus(event.target.value)}
+              required
+            >
+              <option value="" disabled>Select your status</option>
+              <option value="studying">Currently Studying</option>
+              {PASSING_YEARS.map((year) => (
+                <option key={year} value={`passed-out-${year}`}>Passed Out {year}</option>
+              ))}
+              <option value="other">Other</option>
+            </select>
+            {status === "other" && (
+              <input id="status-other" name="statusOther" type="text" placeholder="Please specify" required />
+            )}
           </div>
 
           <button className="register-button" type="submit">
